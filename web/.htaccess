@@ -1,0 +1,38 @@
+RewriteEngine On RewriteBase /
+
+
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . index.php
+
+RewriteCond %{REQUEST_URI} \.webm$
+RewriteRule .* - [T=video/webm]
+
+<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
+  <IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+  </IfModule>
+</FilesMatch>
+
+# webfont mime types
+AddType application/vnd.ms-fontobject  eot
+AddType font/truetype                  ttf
+AddType font/opentype                  otf
+AddType application/x-font-woff        woff
+
+# video mime types
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
+
+# webfonts and svg:
+<IfModule mod_deflate.c>
+  <FilesMatch "\.(ttf|otf|eot|svg|mp4|webm|ogv)$" >
+    SetOutputFilter DEFLATE
+    AddType video/ogg .ogv
+  	AddType video/webm .webm
+  	AddType video/mp4 .mp4
+  </FilesMatch>
+</IfModule>

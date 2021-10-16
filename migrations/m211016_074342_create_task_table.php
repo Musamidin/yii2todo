@@ -14,6 +14,10 @@ class m211016_074342_create_task_table extends Migration
     {
         $this->createTable('{{%task}}', [
             'id' => $this->primaryKey(),
+            'title' => $this->text()->notNull(),
+            'priority' => $this->integer()->defaultValue(0),
+            'done' => $this->boolean()->defaultValue(false),
+            'version' => $this->bigInteger(),
         ]);
     }
 
