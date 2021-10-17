@@ -6,7 +6,6 @@ use app\models\Task;
 use Yii;
 use yii\filters\ContentNegotiator;
 use yii\filters\VerbFilter;
-use yii\web\JsonResponseFormatter;
 use yii\web\Response;
 
 class TodoController extends \yii\web\Controller
